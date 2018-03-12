@@ -1,0 +1,22 @@
+#gif-container{
+    display:flex;
+    flex-wrap:wrap;
+}
+
+#gif-container div{
+    margin:5px;
+}
+
+#gif-container p{
+    margin:2px;
+}
+
+@media (min-width: 1200px){
+.container {
+    max-width: 1500px;
+}
+}
+
+.card{
+    margin-bottom:20px;
+}
