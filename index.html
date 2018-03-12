@@ -14,9 +14,13 @@
       <a class="navbar-brand navbar-dark" href="#">Navbar</a>
       
   </nav>
-  <div class = "row">
-    <div class = "container jumbotron">
-
+  <div class = "row ">
+    <div class="container card ">
+      <div class="card-header">
+        Buttons
+      </div>
+      <div id = "button-container" class="card-body">
+      </div>
     </div>
   </div>
 
@@ -25,7 +29,7 @@
       <div class = "col-8">
           <div class="card">
               <div class="card-header">
-                Featured
+                Gifs
               </div>
               <div id = "gif-container"class="card-body">
 
@@ -35,12 +39,18 @@
       <div class = "col-4">
           <div class="card">
               <div class="card-header">
-                Featured
+                Add a Button
               </div>
               <div class="card-body">
-                <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-title">Add a Button</h5>
+                <form id="button-form">
+                  <label for="button-input">Your Topic:</label>
+                  <input type="text" id="button-input"><br>
+            
+                  <!-- Button triggers new movie to be added -->
+                  <input id="add-button"  class = "btn btn-primary" type="submit" value="Add Button">
+                </form>
+
               </div>
             </div>
       </div>
