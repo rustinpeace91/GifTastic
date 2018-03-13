@@ -1,6 +1,9 @@
 body{
     background:#dee9f3;
 }
+#topic-bar button {
+    float: right;
+}
 
 #title-text {
     width:100%;

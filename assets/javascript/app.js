@@ -6,6 +6,7 @@
 
 
 var initialArray = ["Tim and Eric", "sweet drift", "Gucci Mane"];
+var resetArray = ["Tim and Eric", "sweet drift", "Gucci Mane"];
 var buttonDiv = $("#button-container")
 var gifDiv = $("#gif-container");
 var currentGifObject = undefined;
@@ -57,6 +58,10 @@ function pauseGif(gifIterator, clickedGif) {
     }
 };
 
+function resetButtons(){
+    initialArray = resetArray;
+}
+
 $(document).ready(function(){
     displayButtons();
 
@@ -85,5 +90,9 @@ $(document).ready(function(){
         pauseGif(gifIterator, $(this))
     });
 
+    $("#reset-button").on("click", function(){
+        resetButtons();
+        displayButtons();
+    });
 
 });
