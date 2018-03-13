@@ -37,7 +37,7 @@ function displayGifs(queryURL){
                 gifDiv.append(newDiv);
                 var rating = results[i].rating;
                 var p = $("<p>").text("Rating " + rating);
-                var image = $("<img class = 'gif' data-number = " + i + ">").attr("src", results[i].images.fixed_height.url);
+                var image = $("<img class = 'gif' data-number = " + i + ">").attr("src", results[i].images.fixed_height_still.url);
                 newDiv.prepend(image);
                 newDiv.prepend(p);
 
@@ -64,7 +64,7 @@ $(document).ready(function(){
         console.log("running");
 
         var searchTerm = $(this).attr("data-topic");
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=iZpEPEE9yi6m9N2a6Bzu5KL8bFVielx0&limit=10&rating=pg";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=iZpEPEE9yi6m9N2a6Bzu5KL8bFVielx0&limit=10&rating=pg";
         displayGifs(queryURL);
         
     });
