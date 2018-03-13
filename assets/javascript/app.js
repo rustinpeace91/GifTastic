@@ -8,6 +8,7 @@
 var initialArray = ["Tim and Eric", "sweet drift", "Gucci Mane"];
 var buttonDiv = $("#button-container")
 var gifDiv = $("#gif-container");
+var currentGifObject = undefined;
 
 function displayButtons(){
     buttonDiv.empty();
@@ -29,19 +30,32 @@ function displayGifs(queryURL){
         }).then(function(response){
     
             var results = response.data;
-            console.log(results);
+            currentGifObject = response.data;
+            console.log
             for (var i = 0; i < results.length; i++ ){
                 var newDiv = $("<div id = 'item'" + i + ">")
                 gifDiv.append(newDiv);
                 var rating = results[i].rating;
                 var p = $("<p>").text("Rating " + rating);
-                var image = $("<img>").attr("src", results[i].images.fixed_height.url);
+                var image = $("<img class = 'gif' data-number = " + i + ">").attr("src", results[i].images.fixed_height.url);
                 newDiv.prepend(image);
                 newDiv.prepend(p);
 
             }
         });
-}
+};
+
+function pauseGif(gifIterator, clickedGif) {
+    console.log("it works!");
+    var pause = currentGifObject[gifIterator].images.fixed_height_still.url;
+    var play = currentGifObject[gifIterator].images.fixed_height.url;
+    var current = clickedGif.attr("src")
+    if(current === play){
+        clickedGif.attr("src", pause);
+    } else {
+        clickedGif.attr("src", play);
+    }
+};
 
 $(document).ready(function(){
     displayButtons();
@@ -64,6 +78,12 @@ $(document).ready(function(){
             displayButtons();
         }
 
-
     });
+
+    $("#gif-container").on("click", ".gif", function(){
+        var gifIterator = $(this).attr("data-number")
+        pauseGif(gifIterator, $(this))
+    });
+
+
 });

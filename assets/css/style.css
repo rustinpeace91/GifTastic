@@ -1,3 +1,12 @@
+body{
+    background:#dee9f3;
+}
+
+#title-text {
+    width:100%;
+    text-align:center;
+}
+
 #gif-container{
     display:flex;
     flex-wrap:wrap;
@@ -19,4 +28,15 @@
 
 .card{
     margin-bottom:20px;
+}
+
+#button-container button {
+    margin-right:7px;
+}
+
+
+.btn-primary {
+    color: #fff;
+    background-color: #179181;
+    border-color: #179181;
 }
