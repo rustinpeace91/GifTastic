@@ -4,25 +4,29 @@
 //gifs are displayed with their ratings as well
 //all gifs can be paused and played 
 
-
+//GLOBAL VARIABLES//
+//One array to add to, one to reset to it's original state
 var initialArray = ["Tim and Eric", "sweet drift", "Gucci Mane"];
 var resetArray = ["Tim and Eric", "sweet drift", "Gucci Mane"];
 var buttonDiv = $("#button-container")
 var gifDiv = $("#gif-container");
+//used to hold the object reference of the current topic being displayed
 var currentGifObject = undefined;
 
+//FUNCTIONS//
+
+//displays the buttons when the page is loaded when a topic is added. Loops through the array again and displays buttons
 function displayButtons(){
     buttonDiv.empty();
     for(var i = 0; i < initialArray.length; i++){
- 
+        //creates buttons with a "data-topic", which is used to search the API 
         var newButton = $("<button class = 'topic btn btn-primary' data-topic = '" + initialArray[i] + "'>")
-        console.log(newButton);
-        console.log(initialArray[i]);
         newButton.text(initialArray[i]);
         buttonDiv.append(newButton);
     };
 };
 
+//ajax call to display the gifs. adds the returned object to the global variable, loops through array and displays each gif url on the page
 function displayGifs(queryURL){
     gifDiv.empty();
         $.ajax({
@@ -32,7 +36,6 @@ function displayGifs(queryURL){
     
             var results = response.data;
             currentGifObject = response.data;
-            console.log
             for (var i = 0; i < results.length; i++ ){
                 var newDiv = $("<div id = 'item'" + i + ">")
                 gifDiv.append(newDiv);
@@ -46,8 +49,9 @@ function displayGifs(queryURL){
         });
 };
 
+//runs when the user wants to play or pause a gif (initially thought the gifs were meant to be automatically played, hence hte pauseGIF name)
+//collects the still and animated url from the current gif Object declared earlier, and compares the current URL to them, uses an IF statement to switch them. 
 function pauseGif(gifIterator, clickedGif) {
-    console.log("it works!");
     var pause = currentGifObject[gifIterator].images.fixed_height_still.url;
     var play = currentGifObject[gifIterator].images.fixed_height.url;
     var current = clickedGif.attr("src")
@@ -58,22 +62,28 @@ function pauseGif(gifIterator, clickedGif) {
     }
 };
 
+//resets buttons (not a requirement, but I felt it was a good addition. )
 function resetButtons(){
     initialArray = resetArray;
 }
 
+// FUNCTION CALLS //
 $(document).ready(function(){
+    //displays buttons after the page is loaded
     displayButtons();
 
+    //SEARCH FOR GIFS 
     $("#button-container").on("click", "button", function() {
         console.log("running");
-
+        //refers to the "data-topic" of the button clicked, and passes that into the API query URL, which is passed into the displayGifs function
         var searchTerm = $(this).attr("data-topic");
+        //url limits rating to PG
         var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchTerm + "&api_key=iZpEPEE9yi6m9N2a6Bzu5KL8bFVielx0&limit=10&rating=pg";
         displayGifs(queryURL);
         
     });
 
+    //ADD A BUTTON
     $("#add-button").on("click", function(event){
         event.preventDefault();
         var topic = $("#button-input").val().trim();
@@ -85,11 +95,16 @@ $(document).ready(function(){
 
     });
 
+    
+
+    //PAUSE OR PLAY GIF
     $("#gif-container").on("click", ".gif", function(){
+        //uses a data-number which is passed back to the currentObject, which can be used to collect properties 
         var gifIterator = $(this).attr("data-number")
         pauseGif(gifIterator, $(this))
     });
 
+    //RESET BUTTONS
     $("#reset-button").on("click", function(){
         resetButtons();
         displayButtons();
