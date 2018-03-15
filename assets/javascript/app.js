@@ -64,7 +64,11 @@ function pauseGif(gifIterator, clickedGif) {
 
 //resets buttons (not a requirement, but I felt it was a good addition. )
 function resetButtons(){
-    initialArray = resetArray;
+    initialArray = []; 
+    for(var i = 0; i < resetArray.length; i++){
+        initialArray.push(resetArray[i]);
+    }
+
 }
 
 // FUNCTION CALLS //
@@ -106,8 +110,11 @@ $(document).ready(function(){
 
     //RESET BUTTONS
     $("#reset-button").on("click", function(){
+        console.log("I'm running");
         resetButtons();
+
         displayButtons();
+
     });
 
 });
