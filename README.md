@@ -8,6 +8,6 @@ This program adds 10 gifs based on the button pressed at the top. The three gifs
 
 Simply clone the repo and run index.html
 
-Alternatively visit: 
+Alternatively visit: https://rustinpeace91.github.io/GifTastic/
 
 ![alt-text](https://i.imgur.com/rXdw0DY.png)
